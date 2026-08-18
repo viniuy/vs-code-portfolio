@@ -2,16 +2,8 @@
 
 import { useState, useRef, useEffect, KeyboardEvent } from 'react'
 import { TermLine } from '@/types'
+import { personalInfo } from '@/data/files'
 import { useRunBuild } from '@/components/editor/RunBuildContext'
-
-const SYSTEM_PROMPT = `You are Vince's AI assistant embedded in his developer portfolio. You speak on behalf of Vincent Dizon, a 22-year-old Filipino full-stack developer from Bacoor, Cavite. Answer questions about him confidently and concisely. Key facts:
-- BSIT graduate from STI Alabang (Jul 2026)
-- Full-stack dev: React, Next.js, TypeScript, Java, PostgreSQL, Node.js, Claude API
-- Thesis: DIDASKO — RFID grading SaaS 
-- Projects: CHRONOSYNC (collab platform), ARISE (fitness RPG with Claude API), 3D room portfolio (Blender + React Three Fiber)
-- Achievements: Codefest school champion, Codefest cluster first runner-up
-- Email: vincent.enolpe@gmail.com
-Keep responses to 2-4 lines max for terminal readability. Be sharp, confident, and on-brand.`
 
 const helpLines: TermLine[] = [
   { type: 'muted',   value: '' },
@@ -25,13 +17,16 @@ const helpLines: TermLine[] = [
   { type: 'muted',   value: '' },
 ]
 
+// Sourced from personalInfo so the terminal can never drift from the rest of the site.
+const stripScheme = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+
 const contactLines: TermLine[] = [
   { type: 'muted',   value: '' },
   { type: 'success', value: '  ─── Contact Vincent ───' },
-  { type: 'normal',  value: '  email: vincent.enolpe@gmail.com' },
-  { type: 'normal',  value: '  github: github.com/vincentdizon' },
-  { type: 'normal',  value: '  linkedin: linkedin.com/in/vincentdizon' },
-  { type: 'normal',  value: '  location: Bacoor, Cavite, PH' },
+  { type: 'normal',  value: `  email: ${personalInfo.email}` },
+  { type: 'normal',  value: `  github: ${stripScheme(personalInfo.github)}` },
+  { type: 'normal',  value: `  linkedin: ${stripScheme(personalInfo.linkedin)}` },
+  { type: 'normal',  value: `  location: ${personalInfo.location}` },
   { type: 'muted',   value: '' },
 ]
 
@@ -52,7 +47,7 @@ const hireLines: TermLine[] = [
   { type: 'muted',   value: '' },
   { type: 'success', value: '  Initializing hire sequence...' },
   { type: 'muted',   value: '' },
-  { type: 'success', value: '  → vincent.enolpe@gmail.com' },
+  { type: 'success', value: `  → ${personalInfo.email}` },
   { type: 'muted',   value: '' },
 ]
 

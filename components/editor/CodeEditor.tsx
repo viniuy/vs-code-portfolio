@@ -26,6 +26,8 @@ function renderLineParts(parts: (string | [string, string])[]): string {
 
 export default function CodeEditor() {
   const { activeFile, openTabs } = useEditor()
+  // Must stay above the early returns — hooks have to run in the same order every render.
+  const { addBuildLines, notifyBuildStart } = useRunBuild()
 
   // If there are no open tabs, show an empty placeholder so the editor updates
   if (openTabs.length === 0) {
@@ -38,8 +40,6 @@ export default function CodeEditor() {
 
   const file = files[activeFile]
   if (!file) return null
-
-  const { addBuildLines, notifyBuildStart } = useRunBuild()
 
   return (
     <div style={{ display: 'flex', flex: 1, overflow: 'hidden', position: 'relative' }}>

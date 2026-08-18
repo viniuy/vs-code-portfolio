@@ -10,6 +10,7 @@ import GitPanel from '@/components/sidebar/GitPanel'
 import { RunBuildProvider } from '@/components/editor/RunBuildContext'
 import { useEditor } from '@/components/editor/EditorContext'
 import { FileKey } from '@/types'
+import { allTabs } from '@/data/files'
 import MobileLayout from '@/components/mobile/MobileLayout'
 import { useIsMobile } from '@/hooks/useIsMobile'
 
@@ -98,7 +99,7 @@ function PageInner() {
   function handleMenuAction(action?: string) {
     setOpenMenu(null)
     if (!action) return
-    if (['readme','projects','boxing','osu','didasko','arise','chrono','room'].includes(action)) {
+    if (allTabs.some((t) => t.key === action)) {
       openFile(action as FileKey)
     } else if (action === 'explorer') setActivePanel('explorer')
     else if (action === 'search')   setActivePanel('search')

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react'
 import { FileKey, Tab } from '@/types'
-import { defaultTabs } from '@/data/files'
+import { allTabs, defaultTabs } from '@/data/files'
 
 interface EditorContextType {
   activeFile: FileKey
@@ -25,14 +25,6 @@ export function EditorProvider({ children }: { children: ReactNode }) {
   function openFile(key: FileKey) {
     setActiveFile(key)
     if (!openTabs.find((t) => t.key === key)) {
-      const allTabs: Tab[] = [
-        { key: 'readme',   label: 'README.md',    icon: 'ti-markdown',        iconColor: '#519aba' },
-        { key: 'projects', label: 'projects.tsx', icon: 'ti-brand-typescript', iconColor: '#007acc' },
-        { key: 'didasko',  label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
-        { key: 'arise',    label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
-        { key: 'chrono',   label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
-        { key: 'room',     label: 'scene.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
-      ]
       const tab = allTabs.find((t) => t.key === key)
       if (tab) setOpenTabs((prev) => [...prev, tab])
     }

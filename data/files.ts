@@ -11,10 +11,20 @@ export const personalInfo = {
   currentlyBuilding: 'ARISE · Room Portfolio',
 }
 
-export const defaultTabs: Tab[] = [
+// Single source of truth for every openable tab. Keep in sync with `files` below —
+// anything listed here must have a matching entry, and anything in `files` that the
+// Sidebar exposes must be listed here or it opens without a tab.
+export const allTabs: Tab[] = [
   { key: 'readme',   label: 'README.md',    icon: 'ti-markdown',        iconColor: '#519aba' },
   { key: 'projects', label: 'projects.tsx', icon: 'ti-brand-typescript', iconColor: '#007acc' },
+  { key: 'didasko',  label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
+  { key: 'arise',    label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
+  { key: 'chrono',   label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
+  { key: 'mikay',    label: 'index.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
+  { key: 'room',     label: 'scene.tsx',    icon: 'ti-brand-typescript', iconColor: '#007acc' },
 ]
+
+export const defaultTabs: Tab[] = allTabs.slice(0, 2)
 
 export const files: Record<string, FileData> = {
   readme: {

@@ -20,6 +20,7 @@ type Project = {
   users?: number | null
   github?: string
   video?: string
+  poster?: string
   description: string
 }
 
@@ -54,6 +55,7 @@ const projects: Project[] = [
     color: '#e0c138d5',
     icon: '/didasko.png',
     video: '/project_mp4/didasko.mp4',
+    poster: '/project_mp4/didasko.jpg',
     github: 'https://github.com/viniuy/didasko-capstone',
     description: 'A multi-role SaaS for RFID-based attendance tracking and grade management, built with enterprise-grade security including break-glass access control and full audit logging.',
   },
@@ -64,7 +66,8 @@ const projects: Project[] = [
     status: 'active',
     color: '#78b3ce',
     icon: '/info_logo.png',
-    video: '/project_mp4/informatics_Video.mp4',
+    video: '/project_mp4/Informatics_Video.mp4',
+    poster: '/project_mp4/Informatics_Video.jpg',
   },
   {
     name: 'CHRONOSYNC',
@@ -73,6 +76,7 @@ const projects: Project[] = [
     color: '#569cd6',
     icon: '/chronos.png',
     video: '/project_mp4/chronosync.mp4',
+    poster: '/project_mp4/chronosync.jpg',
     github: 'https://github.com/viniuy/ChronoSync4.0',
     description: 'A real-time collaboration platform for team communication and project management.',
   },
@@ -83,6 +87,7 @@ const projects: Project[] = [
     color: '#10b981',
     icon: '/mikaypaylater.png',
     video: '/project_mp4/mikay.mp4',
+    poster: '/project_mp4/mikay.jpg',
     github: 'https://github.com/viniuy/home-finance',
     description: 'An installable family finance PWA with live multi-device sync via Supabase Realtime — everyone in the house sees the same numbers, instantly.',
   },
@@ -393,10 +398,12 @@ function ProjectSpotlight() {
             <video
               key={current.video}
               src={current.video}
+              poster={current.poster}
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
           </div>
